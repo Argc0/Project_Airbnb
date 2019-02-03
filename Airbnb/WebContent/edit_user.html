@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Admin Page</title>
+	<link rel="stylesheet" type="text/css" href="css/mycss.css">
+   	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+   	<script src="./FileSaver.js"></script>
+	<script src="./dirPagination.js"></script>
+	<script src="./userapp.js"></script>
+</head>
+
+<body data-ng-app="userapp">
+
+<div ng-controller="EditUserCtrl">
+	<h1>Informations about the user</h1>
+	<p>Id of user:	{{myuser.idUser}}</p>
+	<p>User Name:	{{myuser.username}}</p>
+	<p>User Password:	{{myuser.password}}</p>
+	<p>User email:	{{myuser.email}}</p>
+	<p>First Name:	{{myuser.firstName}}</p>
+	<p>Last Name:	{{myuser.lastName}}</p>
+	<p>Is a tenant:	{{myuser.isTenant}}</p>
+	<p>Is a host:	{{myuser.isHost}}</p>
+	<p>Telephone:	{{myuser.telephone}}</p>
+	<div id="image">
+	<p>Image of user:</p>
+	<img ng-src="data:image/jpeg;base64,{{myuser.photo}}" style="width:500px;height:300px;" alt = "No picture"/>
+	</div>
+	<button id="approve" ng-click="approve()" ng-hide="{{myuser.isApproved}}">Approve</button><br>
+</div>
+<button id ="backw" onclick="window.location.href='welcomepage.html'">Back to welcome page</button>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">  
+		<title>Login</title>
+		<link rel="stylesheet" type="text/css" href="css/mycss.css">  
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+   	    <script src="./FileSaver.js"></script>
+		<script src="./dirPagination.js"></script>
+		<script src="./userapp.js"></script>
+	</head>	
+	
+<body data-ng-app="userapp">  
+	<div ng-controller="UserCtrl">
+		<form ng-submit="login()">
+			 User name:<br>
+  			<input type="text" ng-model="logininfo.username" required><br>
+  			User password:<br>
+  			<input type="password" ng-model="logininfo.password" required>
+ 			 <input type="submit" value="Enter"/>
+		</form>
+	</div>
+	<button id="backw" onclick="window.location.href='welcomepage.html'">Back to welcome page</button>
+</body>
+</html>

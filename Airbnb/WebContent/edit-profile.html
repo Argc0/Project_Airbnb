@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Edit Profile</title>
+	<link rel="stylesheet" type="text/css" href="css/mycss.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+   	<script src="./FileSaver.js"></script>
+	<script src="./dirPagination.js"></script>
+	<script src="./userapp.js"></script>
+</head>
+<body data-ng-app="userapp">
+<div ng-controller="EditProfileCtrl">
+	<button onclick="window.location.href='change-password.html'" ng-show="photohide">Change Password</button>
+	<button ng-click="ChangePhoto()" ng-show = "photohide">Change Photo</button>
+	<div ng-hide="photohide">
+		<input type = "file" file-model = "myFile"/>
+    	<button ng-click = "uploadFile()">Change</button>
+	</div>
+
+	<form ng-submit="EditUser()" ng-show="photohide">
+    	Username: <input type="text" ng-model="userdata.username"><br>
+    	Email: <input type="text" ng-model = "userdata.email"><br>
+    	First Name: <input type="text" ng-model = "userdata.firstName"><br>
+    	Last Name: <input type="text" ng-model = "userdata.lastName"><br>
+    	Telephone: <input type="text" ng-model = "userdata.telephone"><br><br>
+    	<input type="checkbox" name="ishost" value="Host" ng-model="userdata.isHost">I am a host<br>
+    	<input type="checkbox" name="istenant" value="Tenant" ng-model="userdata.isTenant">I am a tenant<br>
+		<button type="submit"value="Save">Save</button>
+	</form>
+	<button id ="backw" onclick="window.location.href='welcomepage.html'">Back to welcome page</button>
+	<button id="back" onclick="window.location.href='edit-profile.html'">Back</button>
+</div>
+</body>
+</html>

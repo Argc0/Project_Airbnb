@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Admin Page</title>
+	<link rel="stylesheet" type="text/css" href="css/mycss.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="./FileSaver.js"></script>
+	<script src="./dirPagination.js"></script>
+	<script src="./userapp.js"></script>
+	<style type="text/css">
+		.white {
+    		color: white; 
+		}
+		.black {
+    		color: black;
+		}
+	</style>
+</head>
+
+<body data-ng-app="userapp">
+
+<div ng-controller="AdminCtrl">
+	<h1>Welcome Admin!</h1>
+	<button id="xml" ng-click="export_xml()" > Export to xml</button>
+	<table>
+		<tr> <th> Id </th> <th> Username </th> <th> Button </th></tr>
+		<tr ng-repeat="user in myUsers">
+			<td>{{user.idUser}} </td> <td>{{user.username}}</td> 
+			<td> <button id="admin" ng-click="edit(user)" ng-class='{black : user.isApproved, white: !user.isApproved}'>See details</button></td>
+		</tr>
+	</table>
+	<button id ="backw" onclick="window.location.href='welcomepage.html'">Back to welcome page</button>
+</div>
+</body>
+</html>

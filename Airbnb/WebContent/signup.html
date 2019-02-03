@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Sign Up</title>
+	<link rel="stylesheet" type="text/css" href="css/mycss.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+   	<script src="./FileSaver.js"></script>
+   	<script src="./dirPagination.js"></script>
+	<script src="./userapp.js"></script>
+</head>
+<body data-ng-app="userapp">
+<div ng-controller="UserCtrl">
+<h1>Sing up!</h1>
+<div ng-hide="value_show">
+	<input type = "file" file-model = "myFile"/>
+    <button ng-click = "uploadFile()">Upload</button> 
+    <button ng-click = skip() style="width:20%;color:orange;">Skip</button>  
+</div>
+<form name="signup_form" ng-submit="insertUser()" ng-show="value_show">
+    Username: <input type="text" name="username" ng-model="user.username" ng-unique required><br>
+    <span ng-show="signup_form.username.$error.unique" style="color:red;">Username is taken!</span><br>
+    Password: <input type="password" ng-model="user.password" required><br>
+    Repeat Password: <input type="password" ng-model="repeat_password" required><br>
+    Email: <input type="text" ng-model = "user.email" required><br>
+    First Name: <input type="text" ng-model = "user.firstName" required><br>
+    Last Name: <input type="text" ng-model = "user.lastName" required><br>
+    Telephone: <input type="text" ng-model = "user.telephone"><br><br>
+    <input type="checkbox" name="ishost" value="Host" ng-model="user.ishost">I am a host<br>
+    <input type="checkbox" name="istenant" value="Tenant" ng-model="user.istenant">I am a tenant<br>
+    <button type="submit"value="Submit">Submit</button>
+</form>
+<button id ="backw" onclick="window.location.href='welcomepage.html'">Back to welcome page</button>  
+</div>
+</body>
+</html>

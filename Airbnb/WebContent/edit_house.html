@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Edit House</title>
+	<link rel="stylesheet" type="text/css" href="css/mycss.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkJvzpyAGhC7hZg659OeCfy6aMiCLvHXs"></script>
+	<script src="./house.js"></script>
+</head>
+<body ng-app="houseapp">
+<div ng-controller="EditHouseCtrl">
+	<button id ="messages" onclick="window.location.href='messages.html'">See messages</button><br><br><br><br>
+		<div id="map" style="width:30%;height:300px;"></div>
+	<div ng-show="value_show">
+		<input id="address" type="textbox" ng-model="house.address">
+    	<input type="button" value="Check Address" ng-click="codeAddress()">
+    </div>
+	<form ng-submit="UpdateHouse()" ng-show="value_show">
+	Housename: <input type="text" ng-model="house.housename"><br>
+    Square metres: <input type="text" ng-model="house.square_meters"><br>
+    Country: <input type="text" ng-model = "house.country"><br>
+    City: <input type="text" ng-model = "house.city"><br>
+    Address: <input type="text" ng-model = "house.address"><br>
+    From: <input type="date" ng-model = "house.date_from"><br>
+    To: <input type="date" ng-model = "house.date_to"><br>
+    Price: <input type="number" ng-model = "house.price"><br>
+    Extra Price per Person: <input type="number" ng-model = "house.priceperp"><br>
+    Max number of Persons: <input type="number" ng-model = "house.maxnumofp"><br>
+    Floor: <input type="number" ng-model = "house.floor"><br>
+    Number of Beds: <input type="number" ng-model = "house.numberBeds"><br>
+    Number of Baths: <input type="number" ng-model = "house.numberBaths"><br>
+    Number of Bedrooms: <input type="number" ng-model = "house.numberBedrooms"><br><br>
+    <input type="checkbox" name="isprivate" value="Private" ng-model="house.isPrivate">Private House<br>
+    <input type="checkbox" name="isroom" value="Room" ng-model="house.isRoom">Room<br>
+    <input type="checkbox" name="wifi" value="Wifi" ng-model="house.wiFi">WiFi<br>
+    <input type="checkbox" name="heating" value="Heating" ng-model="house.heating">Heating<br>
+    <input type="checkbox" name="AC" value="AC" ng-model="house.ac">A/C<br>
+    <input type="checkbox" name="elevator" value="Elevator" ng-model="house.elevator">Elevator<br>
+    <input type="checkbox" name="kitchen" value="Kitchen" ng-model="house.kitchen">Kitchen<br>
+    <input type="checkbox" name="TV" value="TV" ng-model="house.tv">TV<br>
+    <input type="checkbox" name="parking" value="Parking" ng-model="house.parking">Parking<br>
+    <input type="checkbox" name="livingroom" value="Livingroom" ng-model="house.livingRoom">Living Room<br><br>
+	Summary:<br> <textarea ng-model = "house.summary"></textarea><br>
+	Information about the house: <br><textarea ng-model = "house.information"></textarea><br>
+	Renting Rules: <br><textarea ng-model = "house.rentingRules"></textarea><br>
+	Transport Information:<br> <textarea ng-model = "house.transitInfo"></textarea><br>
+	<img id="imga" ng-src="data:image/jpeg;base64,{{house.photo}}"  style="width:500px;height:300px;" alt = "No picture"/>
+    <button type="submit" value="Save">Save</button>
+</form>    
+<div ng-hide="value_show">
+	<input type = "file" file-model = "myFile"/>
+    <button ng-click = "uploadFile()">Upload</button>
+</div>
+<button id ="backw" onclick="window.location.href='welcomepage.html'">Back to welcome page</button>
+</div>	
+</body>
+</html>

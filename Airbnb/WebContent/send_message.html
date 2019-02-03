@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Send Message</title>
+	<link rel="stylesheet" type="text/css" href="css/mycss.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="./FileSaver.js"></script>
+	<script src="./dirPagination.js"></script>
+	<script src="./userapp.js"></script>
+</head>
+<body ng-app="userapp">
+<h1>Send message to the host</h1>
+<div ng-controller="MessageCtrl">
+	<textarea name="message" ng-model="mymessage" ></textarea>
+	<button ng-click="Send()">Send</button>
+	<button id="back" ng-click="history()">Back</button>
+</div>
+<button id ="backw" onclick="window.location.href='welcomepage.html'">Back to welcome page</button>
+</body>
+</html>

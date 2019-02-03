@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>List of your houses</title>
+	<link rel="stylesheet" type="text/css" href="css/mycss.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+   	<script src="./FileSaver.js"></script>
+	<script src="./house.js"></script>
+</head>
+<body data-ng-app="houseapp">
+<div ng-controller="HouseEditCtrl">
+<table>
+	<tr><th> Name </th><th> SquareMetres </th><th> Button </th></tr>
+	<tr ng-repeat="house in myHouses">
+		<td>{{house.housename}}</td>
+		<td>{{house.square_meters}}</td> 
+		<td> <button ng-click=EditHouse(house)>Edit</button></td>
+	</tr>
+</table>
+<button onclick="window.location.href='addhouse.html'">Add New House</button>
+</div>
+<button id ="backw" onclick="window.location.href='welcomepage.html'">Back to welcome page</button>
+</body>
+</html>

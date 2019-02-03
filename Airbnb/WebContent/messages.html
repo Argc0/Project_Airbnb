@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Messages</title>
+	<link rel="stylesheet" type="text/css" href="css/mycss.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+   	<script src="./FileSaver.js"></script>
+	<script src="./dirPagination.js"></script>
+	<script src="./userapp.js"></script>
+</head>
+<body ng-app="userapp">
+<h1>Messages!</h1>
+<div ng-controller="MessageListCtrl" >
+	<ul id="mes" >
+		<li id="mes" ng-repeat="msginfo in messages">Messages from: {{msginfo.name}}  <button id="mes" ng-click=send(msginfo.name) >Send</button><br>
+			<ul id="mes">
+				<li id="mes" ng-repeat="msg in msginfo.listMessage">{{msg.text}}   <button id="mes" ng-click="delmessage(msg)">Delete</button><br></li>
+			</ul>
+		</li>
+	</ul>	
+</div>
+<button id ="backw" onclick="window.location.href='welcomepage.html'">Back to welcome page</button>
+</body>
+</html>

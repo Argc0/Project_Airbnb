@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Welcome Page</title>
+	<link rel="stylesheet" type="text/css" href="css/mycss.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+   	<script src="./FileSaver.js"></script>
+	<script src="./dirPagination.js"></script>
+	<script src="./userapp.js"></script>
+</head>
+<body data-ng-app="userapp">
+<h1>Welcome!</h1>
+
+<div data-ng-controller="UserCtrl">
+<ul>
+	<li class="menu"><a href="signup.html"> Sign Up</a></li>
+	<li class="menu"><a href="login.html"> Login</a></li>
+	<li class="menu"><a href="" ng-click="logout()" ng-show="login_bool">Logout</a></li>
+	<li class="menu"><a href="edit-profile.html" ng-show="login_bool && !admin_bool">Edit Profile</a></li>
+	<li class="menu"><a href="messages.html" ng-show="login_bool && !admin_bool">Messages</a></li>
+	<li class="menu"><a href="houses.html" ng-show="login_bool && !admin_bool && host_bool">Houses</a></li>
+	<li class="menu"><a href="adminpage.html" ng-show="login_bool && admin_bool">See Users</a></li>
+</ul>
+</div>
+<div ng-controller="SearchCtrl">
+<button ng-click="searching()" ng-show="show_search">Back to search</button>
+<form ng-submit="search_form()" ng-hide="show_search">
+	Country: <input type="text" ng-model="search.country"><br>
+    City: <input type="text" ng-model="search.city"><br>
+    Address: <input type="text" ng-model="search.address"><br>
+    From: <input type="date" ng-model = "search.date_from"><br>
+    To: <input type="date" ng-model = "search.date_to"><br>
+    Number of guests: <input type="number" ng-model = "search.num_guests"><br>
+    <a href="" ng-click="filters()" ng-hide="filter">Other filters</a>
+    <div ng-show="filter">
+    Other Filters:<br>
+    <br>
+    	Room type:
+    	<br> 
+     		<input type="checkbox" name="is_private" value="Is_private" ng-model="search.isPrivate">Private Room<br>
+    		<input type="checkbox" name="is_house" value="Is_house" ng-model="search.isRoom">House<br>
+    Max Cost:
+    <br> 
+    	<input type="number" ng-model = "search.price"><br>
+    Room Amenities:
+    <br>
+    	<input type="checkbox" name="wifi" value="Wifi" ng-model="search.wiFi">WiFi<br>
+    	<input type="checkbox" name="AC" value="AC" ng-model="search.ac">A/C<br>
+    	<input type="checkbox" name="heating" value="Heating" ng-model="search.heating">Heating<br>
+    	<input type="checkbox" name="kitchen" value="Kitchen" ng-model="search.kitchen">Kitchen<br>
+    	<input type="checkbox" name="TV" value="TV" ng-model="search.tv">TV<br>
+    	<input type="checkbox" name="parking" value="Parking" ng-model="search.parking">Parking<br>
+    	<input type="checkbox" name="elevator" value="Elevator" ng-model="search.elevator">Elevator<br>
+    </div>
+    <button type="submit"value="Search">Search</button>
+</form>
+<ul class="list" ng-show="show_search">
+	<li class="list-item" dir-paginate="house in mySHouses | itemsPerPage: pageSize" current-page="currentPage">
+	​<div class="list-content">
+      <h2>{{house.housename}}</h2>
+      <img id="search" ng-src="data:image/jpeg;base64,{{house.photo}}" style="width:400px;height:300px;" alt = "No picture"/>
+      <p>The price is: 	{{house.price}}<br>
+		Is private house:	{{house.isPrivate}}<br> 
+		Is a room:	{{house.isRoom}}<br>
+		Number of beds: {{house.numberBeds}}<br>
+		Total reviews: {{house.numberReviews}}<br>
+		<strong>☆</strong>:	{{house.rate}}
+		</p>
+      <a href="" ng-click="house_details(house)">See</a>
+    </div>
+	</li>
+</ul>
+<div class="other-controller" ng-show="show_search">
+    <div class="text-center">
+    	<dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
+</div>
+</div>
+</body>
+</html>

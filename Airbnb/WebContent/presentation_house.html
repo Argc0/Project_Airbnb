@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Presentation of the House</title>
+	<link rel="stylesheet" type="text/css" href="css/mycss.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkJvzpyAGhC7hZg659OeCfy6aMiCLvHXs"></script>
+	<script src="./house.js"></script>
+</head>
+<body ng-app="houseapp">
+	<div ng-controller="PresentationHouseCtrl">
+		<h1>Details of the house</h1>
+		<button id="seeh" ng-click="host_show()" ng-hide="host_inf">See host</button><br><br><br>
+		<div ng-hide="host_inf">
+			<p>House Space</p>
+			<p>
+				Number of beds:	{{house.numberBeds}}<br>
+				Number of bathrooms: {{house.numberBaths}}<br>
+				Is private:	{{house.isPrivate}}<br>
+				Is a room:	{{house.isRoom}}<br>
+				Number of bedrooms: {{house.numberBedrooms}}<br>
+				House has a living room:	{{house.livingRoom}}<br>
+				Square-meters:	{{house.square_meters}}<br>
+			</p>
+			<p>Description</p>
+			<p>Summary:<br>	{{house.summary}}</p>
+			<p>Renting Rules:<br>{{house.rentingRules}}</p>
+			<p>Location</p>
+			<p>
+				Address:	{{house.address}}<br><br>
+				Transportation informations:<br>{{house.transitInfo}}<br>
+			</p>
+			<div id="map" style="width:40%;height:300px;"></div>
+			<img id="presh" ng-src="data:image/jpeg;base64,{{house.photo}}" style="width:500px;height:400px;"alt = "No picture"/>
+			<p>Rate</p>
+			<strong>Rating</strong> <span><strong>☆</strong></span><br><input type="number" ng-model="rate" style="width:10%" required>
+			<button ng-click="Rating()" style="width:10%">Rate</button>
+			<p>Reviews</p>
+			<ul id="mes">
+				<li id="mes" ng-repeat="rev in house.listReview">{{rev.username}} wrote:	{{rev.text}} </li>
+			</ul>
+			<p>Write a review</p>
+			<form ng-submit="review()" id="myform">
+				<input type="checkbox" name="review_for_host" value="review_for_host" ng-model="forhost">Review for host<br>
+				<textarea name="review" ng-model="text" form="myform" required></textarea><br>
+				<input type="submit" value="Submit the review" style="width:30%">
+			</form>
+			<p style="text-align:center">Make a reservation</p>
+			<button ng-click="reservation()" >Reservation</button>
+		</div>
+		<div ng-show="host_inf">
+			<p style="text-align:center">Host Information</p>
+			<p>The house owner is:	{{house.owner}}</p>
+			<p>Reviews for host</p>
+			<ul id="mes">
+				<li id="mes" ng-repeat="revi in house.hostReviews">{{revi.username}} wrote:	{{revi.text}} </li>
+			</ul>
+			<button ng-click=send()>Send a Message</button>
+			<img  ng-src="data:image/jpeg;base64,{{house.photo_owner}}" style="width:500px;height:400px;" alt="No picture"/>
+		</div>
+		<button id ="back" onclick="window.location.href='presentation_house.html'" ng-show="host_inf">Back</button>
+</div>
+<button id ="backw" onclick="window.location.href='welcomepage.html'">Back to welcome page</button>
+</body>
+</html>
